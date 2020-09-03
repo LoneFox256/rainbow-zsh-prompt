@@ -41,25 +41,25 @@ TERM_GREEN=$(tput setaf 2)
 TERM_BLUE=$(tput setaf 4)
 
 unset PS1
-PS1_COLORLESS=$(sed 's/[[:space:]]*$//' <<<"${PS1:-\$(print -P '%m:%~ %n%#')}")
+PS1_COLORLESS=$(sed 's/[[:space:]]*$//' <<<"${PS1:-\$(print -P '%m:%~ %#')}")
 PS1_SPACING=' '
 PS1=''
 
-PS1_HISTORY_NUMBER="\$(print -P '%!)')"
-PS1+='$(eval "$PS1_COLORIZE_COMMAND" <<<"'$PS1_HISTORY_NUMBER'")'
-PS1+=$PS1_SPACING
+#PS1_HISTORY_NUMBER="\$(print -P '%!)')"
+#PS1+='$(eval "$PS1_COLORIZE_COMMAND" <<<"'$PS1_HISTORY_NUMBER'")'
+#PS1+=$PS1_SPACING
 
-PS1+='['
-PS1+='$('
-PS1+='if ((PS1_exit == 0)); then '
-PS1+="echo '$TERM_GREEN'; "
-PS1+='else '
-PS1+="echo '$TERM_RED'; fi"
-PS1+=')'
-PS1+='$PS1_exit'
-PS1+=$TERM_DEFAULT
-PS1+=']'
-PS1+=$PS1_SPACING
+#PS1+='['
+#PS1+='$('
+#PS1+='if ((PS1_exit == 0)); then '
+#PS1+="echo '$TERM_GREEN'; "
+#PS1+='else '
+#PS1+="echo '$TERM_RED'; fi"
+#PS1+=')'
+#PS1+='$PS1_exit'
+#PS1+=$TERM_DEFAULT
+#PS1+=']'
+#PS1+=$PS1_SPACING
 
 PS1+='$(eval "$PS1_COLORIZE_COMMAND" <<<"'$PS1_COLORLESS'")'
 PS1+=$PS1_SPACING
@@ -74,7 +74,7 @@ __ps1_remove_newline() {
   tr -d '\n'
 }
 __ps1_lolcat() {
-  lolcat-c -f -h 0.8 | __ps1_remove_newline
+  lolcat-c -f -F 0.8 | __ps1_remove_newline
 }
 
 __ps1_colorize_debug() {
